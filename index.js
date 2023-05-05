@@ -15,7 +15,9 @@ app.set('views', path.join(__dirname, '/views'));
 let tarefas = ['Fazer algo', 'outra tarefa diferente', 'mais alguma coisa kkk'];
 
 app.post('/', (req, res) => {
-    tarefas.push(req.body.tarefa);
+    let tarefa = req.body.tarefa;
+    if(tarefa == '' || tarefa == null)return;
+    tarefas.push(tarefa);
     res.render('index', { tarefasList: tarefas });
 });
 
